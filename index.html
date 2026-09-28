@@ -1175,6 +1175,19 @@ button.secondary:hover:not(:disabled) {
   margin-top: 18px;
 }
 
+.complete-used-notice {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--neon-red);
+  background: var(--neon-red-bg);
+  border: 2px solid var(--neon-red);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-top: 18px;
+}
+
 /* ==========================================================================
    SIMULATION & RESULTS (BRASILEIRÃO & COPA)
    ========================================================================== */
@@ -4069,6 +4082,7 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     rerollYearUsed: false,
     sim: null,
     copa: null,
+    jaSimulou: false, // true assim que ESSE time (o atual) dispara uma simulação
     selectedCandidateId: null,
     selectedSlotId: null,
   };
@@ -4152,6 +4166,7 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     state.started = false;
     state.rerollClubUsed = false;
     state.rerollYearUsed = false;
+    state.jaSimulou = false;
     state.selectedCandidateId = null;
     state.selectedSlotId = null;
     clearSimulation();
@@ -4189,6 +4204,16 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  // --- Bloqueio de simular de novo com o time atual -----------------------
+  // Uma vez que o time montado nessa rodada de escalação dispara UMA
+  // simulação (Brasileirão ou Copa), a única opção depois disso é montar um
+  // time novo do zero — não existe "simular de novo" com esse mesmo time já
+  // escalado. `state.jaSimulou` vive só na memória desta partida e é
+  // zerado em `resetTeam()`; monta run outro time (mesmo que calhe de sair
+  // igual a um anterior, por acaso) sempre pode disputar normalmente, já
+  // que cada escalação é uma rodada nova e independente.
+  var TIME_JA_SIMULADO_MSG = "Esse time já disputou uma simulação — monte outro time pra jogar de novo.";
+
   // --- "Temporada 2026" Simulation
   var SIM_TICK_MS = 800;
 
@@ -4199,10 +4224,13 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
 
   function startSimulation() {
     if (state.phase !== "complete") return;
+    if (state.jaSimulou) { flash(TIME_JA_SIMULADO_MSG, 3600); return; }
     clearSimulation();
     if (audio) audio.playWhistle();
     var result = engine.simulateSeason(bundle, state.myTeam, null, displayTeamName());
+    state.jaSimulou = true;
     state.sim = { result: result, revealedCount: 0, timerId: null, done: false };
+    renderComplete(); // atualiza o card de cima na hora: some o botão de simular, aparece o aviso
     renderSim();
     scrollToEl(els.simArea);
     state.sim.timerId = setInterval(function () {
@@ -4362,8 +4390,11 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
 
   function startCopaRun() {
     if (state.phase !== "complete") return;
+    if (state.jaSimulou) { flash(TIME_JA_SIMULADO_MSG, 3600); return; }
     clearCopa();
+    state.jaSimulou = true;
     state.copa = { roundIndex: 0, usedKeys: [], tie: null, history: [], leg: "ida", minute: 0, penKickIndex: 0, timerId: null, done: false, status: null };
+    renderComplete(); // atualiza o card de cima na hora: some o botão de disputar, aparece o aviso
     playCopaRoundReveal();
     scrollToEl(els.copaArea);
   }
@@ -4814,7 +4845,10 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     els.completeArea.appendChild(list);
 
     var btnRow = el("div", "complete-btn-row");
-    if (!state.sim && !state.copa) {
+    if (state.jaSimulou) {
+      els.completeArea.appendChild(el("div", "complete-used-notice",
+        "⚠ Esse time já disputou uma simulação — monte outro time pra jogar de novo."));
+    } else {
       if (state.gameMode === "copa") {
         var copaBtn = el("button", "", "Disputar a Copa do Brasil");
         copaBtn.addEventListener("click", startCopaRun);
