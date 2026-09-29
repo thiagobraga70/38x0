@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>38x0 · O Jogo do Dream Team</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T032FXRR6T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-T032FXRR6T');
+</script>
 </head>
 <body>
 <style>
@@ -664,9 +673,24 @@ button.secondary:hover:not(:disabled) {
 /* Reroll Chips */
 .reroll-group {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.reroll-hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--arcade-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reroll-chips-row {
+  display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 16px;
 }
 
 .reroll-chip {
@@ -683,6 +707,20 @@ button.secondary:hover:not(:disabled) {
 
 .reroll-chip:hover:not(:disabled) {
   background: #204531;
+  color: var(--arcade-gold);
+}
+
+/* "Time + Ano" (Pular) stands out from the other two — it's the strongest
+   single reroll, replacing both dice at once, so it gets the gold treatment
+   instead of blending in as a third identical chip. */
+.reroll-chip-both {
+  border-color: var(--arcade-gold);
+  background: var(--arcade-gold-bg);
+  box-shadow: var(--shadow-retro-gold);
+}
+
+.reroll-chip-both:hover:not(:disabled) {
+  background: rgba(255, 190, 11, 0.24);
   color: var(--arcade-gold);
 }
 
@@ -2319,20 +2357,29 @@ details.about p {
         <button id="btn-restart-build" class="restart-build-btn" type="button" hidden>Reiniciar escalação</button>
       </div>
 
-      <!-- Re-sortear time/ano: sits between the pitch and the player list so
-           it's right there once the auto-scroll lands the player on the
-           squad reveal, no scrolling back up needed. -->
+      <!-- Re-sortear time/ano: sits between the pitch and the player list, e
+           agora é o destino do auto-scroll depois de cada sorteio (não mais
+           o squad-area lá embaixo), pra essas opções realmente aparecerem
+           na tela em vez de ficarem escondidas acima da rolagem. -->
       <div class="reroll-group" id="reroll-group" hidden>
-        <button id="btn-reroll-club" class="reroll-chip" type="button" title="Sortear outro time">
-          <span class="reroll-icon">↻</span>
-          <span class="reroll-label">Time</span>
-          <span class="reroll-count" id="reroll-club-count">1</span>
-        </button>
-        <button id="btn-reroll-year" class="reroll-chip" type="button" title="Sortear outro ano">
-          <span class="reroll-icon">↻</span>
-          <span class="reroll-label">Ano</span>
-          <span class="reroll-count" id="reroll-year-count">1</span>
-        </button>
+        <div class="reroll-hint">Não gostou do sorteio? Pode sortear de novo:</div>
+        <div class="reroll-chips-row">
+          <button id="btn-reroll-club" class="reroll-chip" type="button" title="Sortear outro time">
+            <span class="reroll-icon">↻</span>
+            <span class="reroll-label">Time</span>
+            <span class="reroll-count" id="reroll-club-count">1</span>
+          </button>
+          <button id="btn-reroll-year" class="reroll-chip" type="button" title="Sortear outro ano">
+            <span class="reroll-icon">↻</span>
+            <span class="reroll-label">Ano</span>
+            <span class="reroll-count" id="reroll-year-count">1</span>
+          </button>
+          <button id="btn-reroll-both" class="reroll-chip reroll-chip-both" type="button" title="Sortear outro time e ano juntos">
+            <span class="reroll-icon">↻</span>
+            <span class="reroll-label">Time + Ano</span>
+            <span class="reroll-count" id="reroll-both-count">1</span>
+          </button>
+        </div>
       </div>
 
       <!-- Squad Reveal Area (When club/year is rolled) -->
@@ -4084,6 +4131,7 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     started: false,
     rerollClubUsed: false,
     rerollYearUsed: false,
+    rerollBothUsed: false,
     sim: null,
     copa: null,
     jaSimulou: false, // true assim que ESSE time (o atual) dispara uma simulação
@@ -4170,6 +4218,7 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     state.started = false;
     state.rerollClubUsed = false;
     state.rerollYearUsed = false;
+    state.rerollBothUsed = false;
     state.jaSimulou = false;
     state.selectedCandidateId = null;
     state.selectedSlotId = null;
@@ -4435,6 +4484,19 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     return { slug: slug, nome: nome, ano: ano, key: slug + "::" + ano };
   }
 
+  // Sorteio completo novo (time E ano juntos) pro botão "Pular" — igual ao
+  // sorteio normal (engine.pickPair), só evitando repetir a exata mesma
+  // dupla clube+ano que já estava revelada.
+  function pickDifferentPair(excludeSlug, excludeAno) {
+    var pair = engine.pickPair(bundle);
+    var tries = 0;
+    while (pair.slug === excludeSlug && pair.ano === excludeAno && tries < 8) {
+      pair = engine.pickPair(bundle);
+      tries++;
+    }
+    return pair;
+  }
+
   function roll() {
     if (openSlotsCount() === 0) return;
     if (state.phase === "rolling" || state.phase === "revealed") return;
@@ -4455,7 +4517,11 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
       state.phase = "revealed";
       render();
       autoSkipIfUnpickable();
-      scrollToEl(els.squadArea, SQUAD_REVEAL_SCROLL_DELAY_MS);
+      // Scroll to the reroll-group, not straight to the squad list: it sits
+      // right above the squad card, so it comes into view together with the
+      // top of the candidate list — without this, the "sortear de novo"
+      // chips were getting scrolled clean past and effectively invisible.
+      scrollToEl(els.rerollGroup, SQUAD_REVEAL_SCROLL_DELAY_MS);
     });
   }
 
@@ -4496,7 +4562,7 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
       state.phase = "revealed";
       render();
       autoSkipIfUnpickable();
-      scrollToEl(els.squadArea, SQUAD_REVEAL_SCROLL_DELAY_MS);
+      scrollToEl(els.rerollGroup, SQUAD_REVEAL_SCROLL_DELAY_MS);
     });
   }
 
@@ -4522,7 +4588,31 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
       state.phase = "revealed";
       render();
       autoSkipIfUnpickable();
-      scrollToEl(els.squadArea, SQUAD_REVEAL_SCROLL_DELAY_MS);
+      scrollToEl(els.rerollGroup, SQUAD_REVEAL_SCROLL_DELAY_MS);
+    });
+  }
+
+  // "Pular": sorteia time E ano juntos de novo, de uma vez só — diferente
+  // dos dois rerolls acima (que trocam só um dos dois mantendo o outro).
+  function rerollBoth() {
+    if (state.phase !== "revealed" || state.rerollBothUsed || !state.currentPair) return;
+    state.rerollBothUsed = true;
+    var mySeq = ++state.rollSeq;
+    state.phase = "rolling";
+    state.currentSquad = null;
+    state.selectedCandidateId = null;
+    if (audio) audio.playCardPick();
+    render();
+    var pair = pickDifferentPair(state.currentPair.slug, state.currentPair.ano);
+    state.currentPair = pair;
+    animateBothDice(pair, mySeq, function () {
+      if (mySeq !== state.rollSeq) return;
+      state.currentSquad = engine.getRealSquad(bundle, pair.key);
+      if (state.mode === "expert") shuffleSquadForExpertMode(state.currentSquad);
+      state.phase = "revealed";
+      render();
+      autoSkipIfUnpickable();
+      scrollToEl(els.rerollGroup, SQUAD_REVEAL_SCROLL_DELAY_MS);
     });
   }
 
@@ -4812,6 +4902,8 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     els.rerollClubCount.textContent = state.rerollClubUsed ? "0" : "1";
     els.btnRerollYear.disabled = state.rerollYearUsed;
     els.rerollYearCount.textContent = state.rerollYearUsed ? "0" : "1";
+    if (els.btnRerollBoth) els.btnRerollBoth.disabled = state.rerollBothUsed;
+    if (els.rerollBothCount) els.rerollBothCount.textContent = state.rerollBothUsed ? "0" : "1";
     els.formationSelect.disabled = state.started;
     els.modeSelect.disabled = state.started;
     els.teamNameInput.disabled = state.started;
@@ -5824,8 +5916,10 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     els.rerollGroup = $("#reroll-group");
     els.btnRerollClub = $("#btn-reroll-club");
     els.btnRerollYear = $("#btn-reroll-year");
+    els.btnRerollBoth = $("#btn-reroll-both");
     els.rerollClubCount = $("#reroll-club-count");
     els.rerollYearCount = $("#reroll-year-count");
+    els.rerollBothCount = $("#reroll-both-count");
     els.formationSelect = $("#formation-select");
     els.modeSelect = $("#mode-select");
     els.teamNameInput = $("#team-name-input");
@@ -5894,6 +5988,7 @@ window.BUNDLE = {"clubes":[{"slug":"sao-paulo","nome":"São Paulo","totalPartici
     els.btnRoll.addEventListener("click", roll);
     els.btnRerollClub.addEventListener("click", rerollClub);
     els.btnRerollYear.addEventListener("click", rerollYear);
+    if (els.btnRerollBoth) els.btnRerollBoth.addEventListener("click", rerollBoth);
     els.btnRestartBuild.addEventListener("click", function () { resetTeam(state.formationName); });
 
     renderFooterStats();
