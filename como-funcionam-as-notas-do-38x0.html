@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Como funcionam as notas do 38x0: critérios, números e limites</title>
+<meta name="description" content="Como as notas de 1 a 99 dos jogadores do 38x0 são definidas: o que pesa, as médias por contexto de temporada, exemplos de craques em times fracos e como sugerir correções.">
+<meta name="google-adsense-account" content="ca-pub-9612221420851568">
+<link rel="canonical" href="https://www.38x0.com.br/como-funcionam-as-notas-do-38x0.html">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T032FXRR6T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T032FXRR6T');
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9612221420851568"
+     crossorigin="anonymous"></script>
+<style>
+  :root {
+    --bg-deep: #07130b;
+    --bg-card: #0f2217;
+    --border-color: #1f3d2b;
+    --text-main: #f0fdf4;
+    --text-dim: #9bb1a4;
+    --neon-green: #00f59b;
+    --neon-cyan: #38bdf8;
+    --arcade-gold: #ffbe0b;
+    --font-title: "Chakra Petch", sans-serif;
+    --font-ui: "Plus Jakarta Sans", -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --shadow-retro: 3px 3px 0px #000000;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font-family: var(--font-ui);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-title);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-decoration: none;
+    background: var(--bg-card);
+    border: 2px solid #000;
+    box-shadow: var(--shadow-retro);
+    padding: 7px 14px;
+    border-radius: 5px;
+    margin-bottom: 22px;
+  }
+  .back-link:hover { color: var(--neon-green); }
+  .top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .top-row .back-link { margin-bottom: 0; }
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-title);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-main);
+    background: var(--bg-card);
+    border: 2px solid #000;
+    box-shadow: var(--shadow-retro);
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .lang-toggle:hover { color: var(--arcade-gold); }
+  h1 {
+    font-family: var(--font-title);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--neon-green);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+  }
+  .updated {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+  h2 {
+    font-family: var(--font-title);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--arcade-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 32px 0 10px;
+  }
+  p, li {
+    font-size: 14.5px;
+    color: var(--text-main);
+  }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--neon-cyan); }
+  .contact-box {
+    margin-top: 32px;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-retro);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+  .contact-box p { margin: 0; }
+  .site-nav {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    font-family: var(--font-title);
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  .site-nav a { color: var(--text-dim); text-decoration: none; }
+  .site-nav a:hover { color: var(--neon-green); }
+  .site-nav a[aria-current="page"] { color: var(--arcade-gold); }
+  .contact-box a {
+    font-family: var(--font-mono);
+    font-weight: 700;
+  }
+
+  ol { margin: 0 0 12px; padding-left: 22px; }
+  .site-nav {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    font-family: var(--font-title);
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  .site-nav a { color: var(--text-dim); text-decoration: none; }
+  .site-nav a:hover { color: var(--neon-green); }
+  .site-nav a[aria-current="page"] { color: var(--arcade-gold); }
+  .table-wrap { overflow-x: auto; margin: 0 0 18px; border: 1px solid var(--border-color); border-radius: 8px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+  th { font-family: var(--font-title); font-size: 12px; color: var(--arcade-gold); text-transform: uppercase; letter-spacing: 0.03em; background: var(--bg-card); white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  td { color: var(--text-main); }
+  .wrap.wide { max-width: 860px; }
+  table.t-wide { min-width: 780px; }
+  th, td { min-width: 64px; }
+</style>
+</head>
+<body>
+  <div class="wrap wide">
+    <div class="top-row">
+      <a class="back-link" href="index.html" data-i18n="back">← Voltar pro jogo</a>
+      <button type="button" class="lang-toggle" id="lang-toggle">
+        <span id="lang-flag">🇧🇷</span>
+        <span id="lang-label">PT</span>
+      </button>
+    </div>
+    <h1 data-i18n="h1">Como funcionam as notas do 38x0: critérios, números e limites</h1>
+    <div class="updated" data-i18n="updated">Última atualização: outubro de 2026</div>
+
+    <p data-i18n="k1">Quem joga o 38x0 logo percebe que as notas dos jogadores geram discussão, e isso é parte do jogo. Cada jogador do 38x0 recebe uma nota (a escala vai de 1 a 99, e na base as notas ficam entre 65 e 99) para uma temporada específica, e a mesma pessoa pode ter notas muito diferentes de um ano para o outro. São 4.026 notas ao todo. Este texto explica o que pesa nessa nota, mostra os números por trás dela e aponta os limites do método, para que você saiba como interpretá-la, e quando discordar.</p>
+
+    <h2 data-i18n="k2">A regra geral</h2>
+
+    <p data-i18n="k3">As notas são definidas principalmente pela campanha do jogador e do time naquela temporada específica: título, posição na tabela, vaga em torneio continental, risco de rebaixamento e destaque individual. De forma secundária, entra o desempenho em outras competições no mesmo período, como a Libertadores, a Copa do Brasil e a seleção. Cada elenco do 38x0 reúne os 11 titulares daquela temporada, e cada jogador é avaliado dentro do contexto daquele ano, não pela carreira inteira.</p>
+
+    <h2 data-i18n="k4">Os números por trás das notas</h2>
+
+    <p data-i18n="k5">A tabela abaixo agrupa todos os jogadores da base pelo contexto registrado para a nota e mostra a média e a faixa de cada grupo, da mais alta para a mais baixa. Cada jogador entra em um único grupo, o primeiro critério que se aplica a ele: quem é eleito craque do campeonato aparece só na primeira linha, mesmo que o time também tenha sido campeão. O grupo "passagem reconhecida" reúne titulares que já tiveram prêmio ou destaque em outra temporada do Brasileirão.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th data-i18n="k6">Contexto da nota</th><th data-i18n="k7">Jogadores</th><th data-i18n="k8">Nota média</th><th data-i18n="k9">Faixa (mín–máx)</th></tr></thead>
+      <tbody>
+        <tr><td data-i18n="k10">Bola de Ouro / craque do campeonato</td><td>24</td><td data-i18n="k11">96,2</td><td>86–99</td></tr>
+        <tr><td data-i18n="k12">Seleção do Campeonato / Bola de Prata</td><td>218</td><td data-i18n="k13">88,3</td><td>76–99</td></tr>
+        <tr><td data-i18n="k14">Destaque do clube na temporada</td><td>68</td><td data-i18n="k15">87,4</td><td>80–95</td></tr>
+        <tr><td data-i18n="k16">Artilheiro do campeonato</td><td>27</td><td data-i18n="k17">87,4</td><td>75–94</td></tr>
+        <tr><td data-i18n="k18">Titular de time campeão</td><td>90</td><td data-i18n="k19">84,6</td><td>79–92</td></tr>
+        <tr><td data-i18n="k20">Titular com passagem reconhecida em outra temporada</td><td>989</td><td data-i18n="k21">81,5</td><td>69–99</td></tr>
+        <tr><td data-i18n="k22">Titular de time na vaga da Libertadores</td><td>630</td><td data-i18n="k23">79,6</td><td>73–95</td></tr>
+        <tr><td data-i18n="k24">Titular de time na vaga da Sul-Americana</td><td>642</td><td data-i18n="k25">78,0</td><td>71–94</td></tr>
+        <tr><td data-i18n="k26">Titular de time de meio de tabela</td><td>808</td><td data-i18n="k27">76,0</td><td>68–90</td></tr>
+        <tr><td data-i18n="k28">Outros titulares</td><td>88</td><td data-i18n="k29">75,3</td><td>65–88</td></tr>
+        <tr><td data-i18n="k30">Titular de time que escapou por pouco do rebaixamento</td><td>49</td><td data-i18n="k31">73,4</td><td>69–84</td></tr>
+        <tr><td data-i18n="k32">Titular de time rebaixado</td><td>393</td><td data-i18n="k33">70,3</td><td>65–81</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2 data-i18n="k34">O que a tabela revela</h2>
+
+    <p data-i18n="k35">O desempenho do time pesa muito. Olhando para a nota média dos onze titulares de cada elenco, os times rebaixados ficam em 71,0; os de meio de tabela, em 77,6; os que terminaram na vaga da Libertadores, em 81,9; e os campeões, em 88,2. A diferença entre um time rebaixado e um campeão passa de 17 pontos de nota.</p>
+
+    <p data-i18n="k36">O reconhecimento individual empurra a nota para cima do patamar do time. Quem entrou na seleção do campeonato tem nota média de 88,3, e as faixas mostram que isso vale até para clubes fracos: há jogadores dessa categoria com nota de 76, e há titulares de times de meio de tabela com nota até 90. Em outras palavras, a nota combina o que o time conquistou com o que o jogador fez individualmente.</p>
+
+    <h2 data-i18n="k37">Craques em times fracos</h2>
+
+    <p data-i18n="k38">Um bom teste do método é olhar para quem recebeu nota alta jogando em um time que terminou do 9º lugar para baixo. A tabela mostra os seis casos mais fortes, contando cada jogador uma vez.</p>
+
+    <div class="table-wrap"><table>
+      <thead><tr><th data-i18n="k39">Jogador</th><th data-i18n="k40">Clube</th><th data-i18n="k41">Ano</th><th data-i18n="k42">Posição final do time</th><th data-i18n="k43">Nota</th></tr></thead>
+      <tbody>
+        <tr><td>Rogério Ceni</td><td>São Paulo</td><td>2005</td><td data-i18n="k44">11º</td><td>99</td></tr>
+        <tr><td>Neymar</td><td>Santos</td><td>2011</td><td data-i18n="k45">10º</td><td>98</td></tr>
+        <tr><td>Paulo Henrique Ganso</td><td>Santos</td><td>2011</td><td data-i18n="k46">10º</td><td>95</td></tr>
+        <tr><td>Romário</td><td>Vasco da Gama</td><td>2005</td><td data-i18n="k47">12º</td><td>94</td></tr>
+        <tr><td>Ronaldo Fenômeno</td><td>Corinthians</td><td>2009</td><td data-i18n="k48">10º</td><td>94</td></tr>
+        <tr><td>Alex</td><td>Cruzeiro</td><td>2004</td><td data-i18n="k49">13º</td><td>92</td></tr>
+      </tbody>
+    </table></div>
+
+    <p data-i18n="k50">Em todos esses casos, a nota individual ficou bem acima do que a campanha do time sugeriria, como a de Rogério Ceni no São Paulo de 2005 e a de Neymar no Santos de 2011. É assim que o 38x0 reconhece craques que jogaram em times que ficaram longe do título.</p>
+
+    <h2 data-i18n="k51">Por que sempre vai dar discussão</h2>
+
+    <p data-i18n="k52">Uma nota única de 1 a 99 resume uma temporada inteira, e qualquer resumo deixa coisas de fora: lesões, mudanças de posição no meio do ano, passagens curtas por um clube e jogos decisivos. As notas do 38x0 são, por definição, uma leitura pessoal de desempenho, ou seja, opinião, e não um veredito. Com 4.026 notas, é natural que algumas mereçam ajuste, e por isso o jogo tem um canal para isso.</p>
+
+    <h2 data-i18n="k53">Como sugerir uma correção</h2>
+
+    <p data-i18n="k54">Se você acha que uma nota está fora do lugar, use o link “Discorda de uma nota?” no rodapé do jogo, informe jogador, clube, temporada, a nota que sugere e o motivo. A sugestão é enviada para avaliação. Também é possível escrever pela página de <a href="contato.html">Contato</a>. Quanto mais específico for o argumento, como títulos, prêmios e números da temporada, mais fácil é avaliar a mudança.</p>
+
+    <h2 data-i18n="k55">Como usar isso a seu favor no jogo</h2>
+
+    <p data-i18n="k56">No modo Expert, em que as notas ficam ocultas até o fim, esse contexto é a sua melhor ferramenta: jogadores de campeões e de times da Libertadores tendem a ter notas mais altas, e os premiados do ano ainda mais. Consulte <a href="campeoes-do-brasileirao-2003-2025.html">os campeões ano a ano</a> e <a href="craques-e-artilheiros-do-brasileirao.html">os craques e artilheiros</a> antes de jogar. Depois, <a href="index.html">monte seu time no 38x0</a>.</p>
+
+    <p data-i18n="k57"><b>Sobre os dados:</b> tudo aqui vem da base do 38x0, que reúne 20 clubes, 366 elencos (cada combinação de clube e temporada, de 2003 a 2025) e mais de 4.000 jogadores. Clubes fora dessa base não aparecem nas listas. As notas dos jogadores são uma leitura pessoal de desempenho, ou seja, opinião, e podem ser contestadas pelo link “Discorda de uma nota?” no jogo.</p>
+
+    <h2 data-i18n="k58">Leia também</h2>
+
+    <ul>
+      <li data-i18n="k59"><a href="as-quatro-eras-do-brasileirao-de-pontos-corridos.html">As quatro eras do Brasileirão de pontos corridos</a></li>
+      <li data-i18n="k60"><a href="campeoes-do-brasileirao-2003-2025.html">Campeões do Brasileirão desde 2003, ano a ano</a></li>
+      <li data-i18n="k61"><a href="maiores-campeoes-do-brasileirao-pontos-corridos.html">Os maiores campeões do Brasileirão de pontos corridos</a></li>
+    </ul>
+
+    <p data-i18n="k62">Veja todos em <a href="artigos.html">Artigos</a>.</p>
+
+    <nav class="site-nav" aria-label="38x0">
+      <a href="como-jogar.html" data-i18n="nav_play">Como jogar</a>
+      <a href="artigos.html" data-i18n="nav_articles">Artigos</a>
+      <a href="sobre.html" data-i18n="nav_about">Sobre</a>
+      <a href="contato.html" data-i18n="nav_contact">Contato</a>
+      <a href="termos.html" data-i18n="nav_terms">Termos de Uso</a>
+      <a href="privacidade.html" data-i18n="nav_privacy">Privacidade</a>
+    </nav>
+  </div>
+  <script>
+  (function () {
+    var EN = {
+  "back": "← Back to the game",
+  "h1": "How 38x0 ratings work: criteria, numbers and limits",
+  "updated": "Last updated: October 2026",
+  "nav_play": "How to play",
+  "nav_articles": "Articles",
+  "nav_about": "About",
+  "nav_contact": "Contact",
+  "nav_terms": "Terms of Use",
+  "nav_privacy": "Privacy",
+  "k1": "Anyone who plays 38x0 soon notices that player ratings spark debate, and that is part of the game. Each 38x0 player gets a rating (the scale runs from 1 to 99, and in the database ratings range from 65 to 99) for a specific season, and the same person can have very different ratings from one year to the next. There are 4,026 ratings in total. This piece explains what drives the rating, shows the numbers behind it and points out the limits of the method, so you know how to read it — and when to disagree.",
+  "k2": "The general rule",
+  "k3": "Ratings are set mainly by the player's and the team's campaign in that specific season: title, league position, continental-tournament spot, relegation risk and individual standout. Secondarily, performance in other competitions in the same period counts, such as the Libertadores, the Copa do Brasil and the national team. Each 38x0 squad gathers that season's 11 starters, and each player is rated within the context of that year, not across a whole career.",
+  "k4": "The numbers behind the ratings",
+  "k5": "The table below groups every player in the database by the context recorded for the rating and shows each group's average and range, from highest to lowest. Each player falls into a single group, the first criterion that applies: a player named the league's best appears only in the first row, even if the team also won the title. The \"recognised spell\" group gathers starters who had an award or standout season in another Brasileirão year.",
+  "k6": "Rating context",
+  "k7": "Players",
+  "k8": "Average rating",
+  "k9": "Range (min–max)",
+  "k10": "Bola de Ouro / league's best player",
+  "k11": "96.2",
+  "k12": "League best XI / Bola de Prata",
+  "k13": "88.3",
+  "k14": "Club's standout of the season",
+  "k15": "87.4",
+  "k16": "League top scorer",
+  "k17": "87.4",
+  "k18": "Starter on a title-winning team",
+  "k19": "84.6",
+  "k20": "Starter with a recognised spell in another season",
+  "k21": "81.5",
+  "k22": "Starter on a Libertadores-spot team",
+  "k23": "79.6",
+  "k24": "Starter on a Sudamericana-spot team",
+  "k25": "78.0",
+  "k26": "Starter on a mid-table team",
+  "k27": "76.0",
+  "k28": "Other starters",
+  "k29": "75.3",
+  "k30": "Starter on a team that narrowly avoided relegation",
+  "k31": "73.4",
+  "k32": "Starter on a relegated team",
+  "k33": "70.3",
+  "k34": "What the table reveals",
+  "k35": "Team performance weighs heavily. Looking at the average rating of each squad's eleven starters, relegated teams sit at 71.0; mid-table teams at 77.6; those that finished in a Libertadores spot at 81.9; and champions at 88.2. The gap between a relegated team and a champion exceeds 17 rating points.",
+  "k36": "Individual recognition pushes the rating above the team's level. Players who made the league's best XI average 88.3, and the ranges show this holds even for weaker clubs: there are players in that category rated as low as 76, and starters on mid-table teams rated up to 90. In other words, the rating combines what the team achieved with what the player did individually.",
+  "k37": "Stars on weak teams",
+  "k38": "A good test of the method is to look at who earned a high rating while playing for a team that finished 9th or lower. The table shows the six strongest cases, counting each player once.",
+  "k39": "Player",
+  "k40": "Club",
+  "k41": "Year",
+  "k42": "Team's final position",
+  "k43": "Rating",
+  "k44": "11th",
+  "k45": "10th",
+  "k46": "10th",
+  "k47": "12th",
+  "k48": "10th",
+  "k49": "13th",
+  "k50": "In all these cases the individual rating sits well above what the team's campaign would suggest, like Rogério Ceni's at São Paulo in 2005 and Neymar's at Santos in 2011. That is how 38x0 recognises stars who played for teams that finished far from the title.",
+  "k51": "Why there will always be debate",
+  "k52": "A single rating from 1 to 99 summarises an entire season, and any summary leaves things out: injuries, mid-year position changes, short spells at a club and decisive matches. 38x0 ratings are, by definition, a personal reading of performance — opinion, not a verdict. With 4,026 ratings, it is natural for some to deserve an adjustment, which is why the game has a channel for that.",
+  "k53": "How to suggest a correction",
+  "k54": "If you think a rating is off, use the “Disagree with a rating?” link in the game's footer, giving the player, club, season, the rating you suggest and the reason. The suggestion is sent for review. You can also write through the <a href=\"contato.html\">Contact</a> page. The more specific the argument — titles, awards and season numbers — the easier it is to assess the change.",
+  "k55": "How to use this in your favour in the game",
+  "k56": "In Expert mode, where ratings stay hidden until the end, this context is your best tool: players from champions and from Libertadores-spot teams tend to have higher ratings, and the year's award winners even more. Check <a href=\"campeoes-do-brasileirao-2003-2025.html\">the champions year by year</a> and <a href=\"craques-e-artilheiros-do-brasileirao.html\">the stars and top scorers</a> before playing. Then <a href=\"index.html\">build your team in 38x0</a>.",
+  "k57": "<b>About the data:</b> everything here comes from the 38x0 database, which covers 20 clubs, 366 squads (each club and season combination, from 2003 to 2025) and over 4,000 players. Clubs outside that database do not appear in the lists. Player ratings are a personal reading of performance — opinion — and can be challenged through the “Disagree with a rating?” link in the game.",
+  "k58": "Read also",
+  "k59": "<a href=\"as-quatro-eras-do-brasileirao-de-pontos-corridos.html\">The four eras of the round-robin Brasileirão</a>",
+  "k60": "<a href=\"campeoes-do-brasileirao-2003-2025.html\">Brasileirão champions since 2003, year by year</a>",
+  "k61": "<a href=\"maiores-campeoes-do-brasileirao-pontos-corridos.html\">The biggest champions of the round-robin Brasileirão</a>",
+  "k62": "See them all in <a href=\"artigos.html\">Articles</a>."
+};
+    var TITLE = { pt: "Como funcionam as notas do 38x0: critérios, números e limites", en: "How 38x0 ratings work: criteria, numbers and limits" };
+    var DESC = { pt: "Como as notas de 1 a 99 dos jogadores do 38x0 são definidas: o que pesa, as médias por contexto de temporada, exemplos de craques em times fracos e como sugerir correções.", en: "How the 1-to-99 player ratings in 38x0 are set: what counts, averages by season context, examples of stars on weak teams and how to suggest corrections." };
+    var KEY = "38x0_lang"; // same key the game uses, so the choice carries over
+
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) nodes[i].setAttribute("data-pt", nodes[i].innerHTML);
+
+    function stored() {
+      try { var v = localStorage.getItem(KEY); if (v === "pt" || v === "en") return v; } catch (e) {}
+      return null;
+    }
+    function detect() {
+      try { if ((navigator.language || "").toLowerCase().indexOf("pt") === 0) return "pt"; } catch (e) {}
+      return "en";
+    }
+    var lang = stored() || detect();
+
+    function apply() {
+      document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
+      for (var j = 0; j < nodes.length; j++) {
+        var k = nodes[j].getAttribute("data-i18n");
+        nodes[j].innerHTML = lang === "pt" ? nodes[j].getAttribute("data-pt") : EN[k];
+      }
+      document.title = TITLE[lang];
+      var meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", DESC[lang]);
+      document.getElementById("lang-flag").textContent = lang === "pt" ? "\uD83C\uDDE7\uD83C\uDDF7" : "\uD83C\uDDFA\uD83C\uDDF8";
+      document.getElementById("lang-label").textContent = lang === "pt" ? "PT" : "EN";
+      document.getElementById("lang-toggle").title = lang === "pt" ? "Switch to English" : "Mudar para português";
+    }
+    document.getElementById("lang-toggle").addEventListener("click", function () {
+      lang = lang === "pt" ? "en" : "pt";
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+      apply();
+    });
+    apply();
+  })();
+  </script>
+</body>
+</html>
